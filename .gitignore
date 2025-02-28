@@ -1,0 +1,11 @@
+# Node modules (evita subir dependencias innecesarias)
+node_modules/
+
+# Variables de entorno (evita exponer credenciales sensibles)
+.env
+
+# Archivos de logs y caché
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
