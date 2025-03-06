@@ -6,13 +6,19 @@ const notificationRoutes = require("./src/routes/notificationRoutes");
 
 const app = express();
 
-// Middlewares
+// Configuración de CORS para permitir el frontend en Netlify
+const corsOptions = {
+  origin: ["https://67c7e52514c11c70b5a8d34b--alumnos8b.netlify.app"], // URL del frontend
+  credentials: true, // Permitir cookies/tokens en headers
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
-app.use(cors());
 
 // Rutas
 app.use("/api/users", userRoutes);
-app.use("/api/messages", messageRoutes); // Asegúrate de que esta línea esté
+app.use("/api/messages", messageRoutes);
 app.use("/api/notifications", notificationRoutes);
 
 module.exports = app;
