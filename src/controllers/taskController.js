@@ -154,9 +154,26 @@ const gradeSubmission = async (req, res) => {
   }
 };
 
+// Nuevo método para obtener una tarea específica
+const getTaskById = async (req, res) => {
+  try {
+    const { taskId } = req.params;
+    const task = await Task.findById(taskId);
+
+    if (!task) {
+      return res.status(404).json({ message: "Tarea no encontrada" });
+    }
+
+    res.status(200).json(task);
+  } catch (error) {
+    res.status(500).json({ message: "Error al obtener la tarea", error: error.message });
+  }
+};
+
 module.exports = {
   createTask,
   getTasksByClass,
+  getTaskById, // <-- Agregar esta línea
   submitTask,
   getSubmissionFile,
   gradeSubmission

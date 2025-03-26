@@ -7,6 +7,7 @@ const {
   getTasksByClass,
   submitTask,
   getSubmissionFile,
+  getTaskById,
   gradeSubmission
 } = require("../controllers/taskController");
 
@@ -16,6 +17,8 @@ router.get("/:classId", authMiddleware, getTasksByClass); // GET /api/tasks/:cla
 router.post("/submit", authMiddleware, upload.single("file"), submitTask); // POST /api/tasks/submit - Entregar tarea
 router.get("/submission/:taskId", authMiddleware, getSubmissionFile); // GET /api/tasks/submission/:taskId - Descargar entrega
 router.patch("/grade", authMiddleware, gradeSubmission); // PATCH /api/tasks/grade - Calificar tarea
+// Agregar esta nueva ruta
+router.get('/task/:taskId', authMiddleware, getTaskById);
 
 module.exports = router;
 
